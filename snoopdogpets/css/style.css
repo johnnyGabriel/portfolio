@@ -1,0 +1,196 @@
+	a:link
+	{
+		text-decoration: none;
+	}
+	body
+	{
+		font-family: Open Sans Condensed;
+		background-color: rgba(228, 223, 223, 1);
+		margin: 0;
+	}
+	h1
+	{
+		font-size: 50px;
+		font-weight: lighter;
+	}
+	img
+	{
+		cursor: pointer;
+	}
+	body #image-viewer
+	{
+		z-index: 2;
+		display: none;
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		background-color: rgba(228, 223, 223, 1);
+	}
+	#image-viewer img
+	{
+		width: 100%;
+		box-shadow: 0px 1px 15px 0px rgba(0, 0, 0, 0.67);
+	}
+	#image-viewer .viewer-container
+	{
+		position: relative;
+		left: 50%;
+		height: 100%;
+		width: 900px;
+		background-color: rgb(141, 196, 141);
+		margin-left: -440px;
+	}
+	#image-viewer .border
+	{
+		float: left;
+		width: 10%;
+		height: 100%;
+		background-color: rgb(116, 116, 168);
+	}
+	.border div
+	{
+		z-index: 2;
+		position: relative;
+		top: 50%;
+		width: 65px;
+		height: 65px;
+		margin: -60px 0 0 40px;
+		background-color: rgb(201, 80, 80);
+		cursor: pointer;
+	}
+	#image-viewer .previous
+	{
+		
+	}
+
+	#image-viewer .next
+	{
+		margin-left: -15px;
+	}
+
+	#image-viewer .image
+	{
+		float: left;
+		position: relative;
+		width: 80%;
+		height: 100%;
+		top: 50%;
+		margin-top: -265px;
+	}
+	#image-viewer .close
+	{
+		position: relative;
+		top: -137px;
+		left: 352px;
+		cursor: pointer;
+	}
+
+	#image-viewer .expand
+	{
+		position: relative;
+		top: -38px;
+		left: 352px;
+		cursor: pointer;
+	}
+
+	#image-viewer .buttons div
+	{
+		height: 50px;
+		width: 50px;
+		background: url('../PNG_IMAGES/09_Expand-128.png');
+		background-color: rgb(185, 111, 111);
+		background-size: 70% 70%;
+		background-repeat: no-repeat;
+		background-position: 7px 8px;
+		border-radius: 2px;
+	}
+	.container
+	{
+		position: absolute;
+		left: 50%;
+		margin-left: -337px;
+		margin-bottom: 100px;
+		width: 670px;
+	}
+	.container div
+	{
+		width: 100%;
+		font-size: 20px;
+		padding: 0 10px 1px 10px;
+		margin-bottom: -10px;
+		background-color: white;
+		border-radius: 2px;
+		box-shadow: 0px 5px 15px 0px rgba(121, 121, 121, 0.59);
+	}
+	.container div h2
+	{
+		font-size: 26px;
+		font-weight: normal;
+		color: white;
+		background-color: rgb(129, 177, 229);
+		margin: 21px 10px 0 10px;
+		padding: 10px 0 10px 20px;
+	}
+	.container #gallery h2
+	{
+		margin: 21px 10px 30px 10px;
+	}
+	.container div img
+	{
+		width: 48.3%;
+		margin: 0 0 5px 7px; 
+		box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.42);
+	}
+	.container div p
+	{
+		font-size: 20px;
+		line-height: 30px;
+   		padding-left: 30px;
+   		margin-top: 8px;
+	}
+	.container .header
+	{
+		height: 250px;
+		width: 750px;
+		margin: 0 0 0 -30px;
+		padding: 0;
+	}
+	.header .cover
+	{
+		height: 78%;
+		margin: 0;
+		padding: 0;
+		background: url('../img/1.jpg');
+		background-repeat: no-repeat;
+		background-position: -22px 4px;
+	}	
+	.header .title
+	{
+		height: 22%;
+		width: 98%;
+		font-size: 30px;
+		color: white;
+		margin-left: -17px;
+		padding: 0 0 0 50px;
+		background-color: rgb(90, 93, 129);
+		border-top-style: solid;
+		border-top-color: rgb(129, 177, 229);
+		border-top-width: 5px;
+	}
+	p .min
+	{
+		font-size: 15px;
+		line-height: 30px;
+   		padding-left: 30px;
+	}
+	.container ul
+	{
+		margin-left: 30px;
+	}
+
+
+
+
+	
+
+

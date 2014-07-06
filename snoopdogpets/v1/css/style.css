@@ -1,0 +1,148 @@
+a:link, a:visited, a:hover, a:active
+{
+	text-decoration: none;
+	font-style: italic;
+	color: white;
+}
+
+body
+{
+	background-color: rgb(99, 61, 61);
+	margin: 0;
+	font-family: Open Sans Condensed;
+	color: white;
+}
+
+h1
+{
+	font-size: 45px;
+	font-weight: normal;
+}
+
+h2
+{
+	background-color: rgb(97, 57, 6);
+	font-size: 25px;
+	font-weight: normal;
+	color: rgb(209, 161, 98);
+	padding: 0;
+	margin: 0;
+}
+
+p
+{
+	font-size: 17px;
+}
+
+img
+{
+	cursor: pointer;
+}
+
+table img
+{
+	width: 90px;
+	height: 80px;
+	margin: 0 10px 10px 0;
+}
+
+body .title
+{
+	position: fixed;
+	width: 100%;
+	margin-left: 120px;
+}
+
+body #container
+{
+	position: fixed; 
+	top: 120px; 
+	width: 3300px;
+	margin: 0 0 0 120px;
+}
+
+body #image-viewer
+{
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background-color: rgba(228, 223, 223, 1);
+}
+
+#image-viewer div
+{
+	position: relative;
+	top: 50%;
+	left: 50%;
+	margin-top: -89px;
+	margin-left: -344px;
+	width: auto;
+	height: 480px;
+	color: black;
+}
+
+#image-viewer img
+{
+	height: 100%;
+}
+
+#image-viewer .close
+{
+	position: relative;
+	top: -137px;
+	left: 352px;
+	cursor: pointer;
+}
+
+#image-viewer .expand
+{
+	position: relative;
+	top: -38px;
+	left: 352px;
+	cursor: pointer;
+}
+
+#image-viewer .previous
+{
+	position: relative;
+	top: 200px;
+	left: 305px;
+	cursor: pointer;
+}
+
+#image-viewer .next
+{
+	position: relative;
+	top: 259px;
+	left: 1072px;
+	cursor: pointer;
+}
+
+#image-viewer .buttons div
+{
+	height: 50px;
+	width: 50px;
+	background: url('../../PNG_IMAGES/09_Expand-128.png');
+	background-color: rgb(185, 111, 111);
+	background-size: 70% 70%;
+	background-repeat: no-repeat;
+	background-position: 7px 8px;
+	border-radius: 2px;
+}
+
+body .column
+{
+	float: left;
+	display: inline-block;
+	width: 720px;
+	margin-right: 100px;
+	padding: 0 20px 0 20px;
+	background-color: rgba(95, 52, 52, 1);
+}
+
+.cover
+{
+	width: 710px;
+	height: 490px;
+}
