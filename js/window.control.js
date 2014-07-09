@@ -22,7 +22,7 @@ $(document).ready(function() {
 			}
 			while(divs_hor_width > 700);
 
-			$('.content div').width((divs_hor_width-15)+'px');
+			$('.content div').width((divs_hor_width-12)+'px');
 		} 
 		else
 		{
