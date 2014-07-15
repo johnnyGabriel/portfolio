@@ -7,25 +7,25 @@
 
 		});
 
-		$('.close').click(function() {
+		$('#close').click(function() {
 
 			gallery.hide();
 
 		});
 
-		$('.expand').click(function() {
+		$('#expand').click(function() {
 
 			gallery.expand();
 
 		});
 
-		$('.previous').click(function() {
+		$('#previous').click(function() {
 
 			gallery.prev();
 
 		});
 
-		$('.next').click(function() {
+		$('#next').click(function() {
 
 			gallery.next();
 
