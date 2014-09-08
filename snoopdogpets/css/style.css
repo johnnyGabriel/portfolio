@@ -33,9 +33,17 @@ h1
 
 h2
 {
-	font-size: 25px;
+	font-size: 30px;
 	font-weight: bold;
 	margin-top: 40px;
+}
+
+h3
+{
+	font-size: 19px;
+	font-weight: bold;
+	color: rgb(78, 78, 78);
+	margin-bottom: 10px;
 }
 
 p
@@ -54,7 +62,9 @@ body .container
 {
 	width: 970px;
 	margin: 0 auto;
-	padding: 0 15px 0 15px;
+	padding-bottom: 50px;
+	box-shadow: 0px 1px 0.1px 0px rgb(126, 126, 126);
+	background: #FFF;
 }
 
 body .container .header
@@ -83,8 +93,7 @@ body .container .content
 	position: relative;
 	width: 100%;
 	padding-top: 10px;
-	background: white;
-	opacity: 0.96;
+	background: rgba(255, 255, 255, 0.96);
 }
 
 body .container .content .nav
@@ -113,3 +122,14 @@ body .container .content .text
 	width: 690px;
 }
 
+body .container .content .text p
+{
+	margin: 0;
+}
+
+body .container .content .text #gallery img
+{
+	width: 48.3%;
+	margin: 0 5px 5px 0;
+	box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.42);
+}
