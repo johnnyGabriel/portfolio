@@ -93,7 +93,9 @@ body .container .content
 	position: relative;
 	width: 100%;
 	padding-top: 10px;
-	background: rgba(255, 255, 255, 0.96);
+	/*redundancia para <=IE8*/
+	background: url('../img/stock/bg_alpha.png');
+	background: rgba(255, 255, 255, 0.92);
 }
 
 body .container .content .nav
@@ -129,7 +131,7 @@ body .container .content .text p
 
 body .container .content .text #gallery img
 {
-	width: 341px;
+	width: 340.9px;
 	margin: 2.5px 2.5px 0 0;
 	box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.42);
 }
