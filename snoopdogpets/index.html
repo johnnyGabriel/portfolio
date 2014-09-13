@@ -12,6 +12,9 @@
 
 	<body>
 
+		<div id="image-viewer">
+		</div>
+
 		<div class="container">
 
 			<div class="header"></div>
@@ -126,17 +129,20 @@
 				</div>
 
 			</div>
-
 		</div>
+
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/jquery-scrolltofixed-min.js"></script>
+		<script type="text/javascript" src="js/gallery.js"></script>
 		<script type="text/javascript">
 
 			$(document).ready(function() {
 
+				//fixa menu
 				$('.nav').scrollToFixed();
 
+				//evento de click menu
 				$('a').click(function(e) {
 
 					e.preventDefault();
@@ -146,6 +152,9 @@
 					}, 500);
 
 				});
+
+				//inicializa galeria
+				gallery.init('#gallery', '#image-viewer', '', '', '', '');
 
 			});
 
