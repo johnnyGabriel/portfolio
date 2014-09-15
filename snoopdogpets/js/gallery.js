@@ -38,14 +38,17 @@ var gallery = {
 		//inicializa o vetor
 		this.imagens = thumbs.toArray();
 
+		/*
 		//inicializa visualizador
 		$(this.visualizador).append('<img src="" alt="" />');
 		this.visualizador_img = $(this.visualizador).find('img');
+		*/
 
 		//evento de click nas thumbs
 		$(this.container+' img').click(function(e) {
 			
-			gallery.open(e.target.id.substring(4));
+			anima.front();
+			//gallery.open(e.target.id.substring(4));
 
 		});
 

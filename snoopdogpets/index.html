@@ -12,7 +12,9 @@
 
 	<body>
 
-		<div id="image-viewer">
+		<div id="image-container">
+			<div class="image-viewer">
+			</div>
 		</div>
 
 		<div class="container">
@@ -135,6 +137,7 @@
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/jquery-scrolltofixed-min.js"></script>
 		<script type="text/javascript" src="js/gallery.js"></script>
+		<script type="text/javascript" src="js/anima.js"></script>
 		<script type="text/javascript">
 
 			$(document).ready(function() {
@@ -154,7 +157,9 @@
 				});
 
 				//inicializa galeria
-				gallery.init('#gallery', '#image-viewer', '', '', '', '');
+				gallery.init('#gallery', '.image-viewer', '', '', '', '');
+				anima.init('.image-viewer');
+				anima.front();
 
 			});
 

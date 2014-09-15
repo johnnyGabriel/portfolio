@@ -58,15 +58,43 @@ hr
     border-top: 0;       
 }
 
-body #image-viewer
+body #image-container
 {
-	display: none;
+	display: block;
 	z-index: 10;
 	position: fixed;
 	width: 100%;
 	height: 100%;
 	background: rgba(255,255,255, 0.95);
-	text-align: center;
+}
+
+body #image-container .image-viewer
+{
+	width: 1014px;
+	height: 100%;
+	margin: 0 auto;
+}
+
+body #image-container .image-viewer ul
+{
+	height: 100%;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+body #image-container .image-viewer ul li
+{
+	float: left;
+	display: none;
+	width: 0%; 
+	height: 100%; 
+	border-left: 1px solid rgb(190, 190, 190); 
+}
+
+body #image-container .image-viewer img
+{
+	width: 100%;
 }
 
 body .container
