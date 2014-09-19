@@ -32,7 +32,7 @@ var gallery = {
 		var thumbs = $(this.container).find('img');
 		for(i=0; x=thumbs.length, i < x; i++)
 		{
-			$(thumbs[i]).attr('id', 'img-'+i);
+			$(thumbs[i]).attr('id', 'img-'+(i+1));
 		}
 
 		//inicializa o vetor

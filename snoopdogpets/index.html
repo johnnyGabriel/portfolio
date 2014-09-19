@@ -13,8 +13,15 @@
 	<body>
 
 		<div id="image-container">
-			<div class="image-viewer">
+
+			<div class="left"></div>
+			<div class="right"></div>
+			<span>X</span>
+			
+			<!--<div class="image-viewer">
 			</div>
+			-->
+
 		</div>
 
 		<div class="container">
@@ -158,8 +165,7 @@
 
 				//inicializa galeria
 				gallery.init('#gallery', '.image-viewer', '', '', '', '');
-				anima.init('.image-viewer');
-				anima.front();
+				anima.init('#image-container', '#image-container .left', '#image-container .right', '#image-container span');
 
 			});
 

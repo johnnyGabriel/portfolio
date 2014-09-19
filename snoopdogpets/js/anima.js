@@ -1,159 +1,342 @@
 var anima = {
 
 
-	i: 1,
+	i: null,
+	container: null,
+	btn_esq: null,
+	btn_dir: null,
+	btn_fechar: null,
+	imagens: [],
 	speed: 'normal',
-	interval: 1000,
-	container: '',
-	imagens: '',
+	auto_interval : null,
+	timer: null,
+	state: false,
 
 
-	init: function(_container) {
+	init: function(_container, _btn_esq, _btn_dir, _btn_fechar) {
 
 		//inicializa as variaveis
 		anima.container = _container;
+		anima.btn_esq = _btn_esq;
+		anima.btn_dir = _btn_dir;
+		anima.btn_fechar = _btn_fechar;
 		anima.imagens = gallery.imagens;
 
 		//cria lista grafica de imagens no container
 		$(anima.container).append('<ul><li id="li0" style="border: 0"></li></ul>');
 
 		//preenche a lista
-		for(i=0; x=anima.imagens.length,i < x; i++)
+		for(var i=0, x=anima.imagens.length; i < x; i++)
 		{
 			var html = "<li id='li"+(i+1)+"' style='background: url("+gallery.getFullImageURL(anima.imagens[i].src)+") 0% 0% / cover;'></li>";
 			$(anima.container+' ul').append(html);
 		}		
 
+		//eventos
+		$('img').click(function(e) {
+			
+			anima.open(parseInt(e.target.id.substring(4)));
+
+		});
+
+		$(anima.btn_esq).click(function() {
+
+			anima.back();
+
+		});
+
+		$(anima.btn_dir).click(function() {
+
+			anima.front();
+
+		});
+
+		$(anima.btn_fechar).click(function() {
+
+			anima.close();
+
+		});
+
+	},
+
+	open: function(_id) {
+
+		//checa se _id é válido
+		if((_id > anima.imagens.length) || (_id < 1) || (_id == undefined)) return false; 
+
+		//checa se container esta ativo
+		if(anima.state == false)
+		{
+			$(anima.container).fadeIn('fast');
+			anima.state = true;
+
+			if(_id == anima.i) return false;
+		}
+
+		//checa se é a primeira abertura de imagem
+		if(anima.i === null) {
+
+			anima.i = _id;
+
+			$('#li'+(anima.i-1)).show( 0, function() {
+
+				$(this).animate({
+					width: '10%'
+				}, anima.speed);
+
+			});
+
+			$('#li'+anima.i).show( 0, function() {
+
+				$(this).animate({
+					width: '79.5%'
+				}, anima.speed);
+
+			});
+
+			$('#li'+(anima.i+1)).show( 0, function() {
+
+				$(this).animate({
+					width: '10%'
+				}, anima.speed);
+
+			});
+
+			return false;
+
+		}
+
+		//armazena o _id anterior para uso posterior em animate
+		var old_id = anima.i;
+		anima.i = _id
+
+		//esconde imagens anteriores
+		$('#li'+(old_id+1)).animate({
+
+			width: '0%'
+
+		}, anima.speed, function() {
+
+			$(this).hide();
+
+		});
+
+		$('#li'+(old_id)).animate({
+
+			width: '0%'
+
+		}, anima.speed, function() {
+
+			$(this).hide();
+			
+		});
+
+		$('#li'+(old_id-1)).animate({
+
+			width: '0%'
+
+		}, anima.speed, function() {
+
+			$(this).hide();
+			
+		});
+
+
+		//mostra imagens atuais
+		$('#li'+(anima.i+1)).show( 0, function() {
+
+			$(this).animate({
+				width: '10%'
+			}, anima.speed);
+
+		});
+
+		$('#li'+(anima.i)).show( 0, function() {
+
+			$(this).animate({
+				width: '79.5%'
+			}, anima.speed);
+
+		});
+
+		$('#li'+(anima.i-1)).show( 0, function() {
+
+			$(this).animate({
+				width: '10%'
+			}, anima.speed);
+
+		});
+
+	},
+
+	close: function() {
+
+		//checa se container esta ativo
+		if(anima.state == true)
+		{
+			anima.stop();
+			$(anima.container).fadeOut('fast');
+			anima.state = false;
+		}
+
 	},
 
 	front: function() {
 
-		anima.log();
+		if((anima.i == anima.imagens.length) || (anima.state == false))return false;
 
-		timer = setInterval(function() {
+		anima.i++;
+		
 
-			if(anima.i == anima.imagens.length+1)
-			{
+		$('#li'+(anima.i-2)).animate({
 
-				clearInterval(timer);
-				anima.i-=2;
-				anima.back();
+			width: '0%'
 
-			} else {
+		}, anima.speed, function() {
 
-				anima.log();
+			$(this).hide(0);
 
-				$('#li'+(anima.i-2)).animate({
+		});
 
-					width: '0%'
+		$('#li'+(anima.i-1)).show( 0, function() {
 
-				}, anima.speed, function() {
+			$(this).animate({
+				width: '10%'
+			}, anima.speed);
 
-					$(this).hide(0);
+		});
 
-				});
+		$('#li'+anima.i).show( 0, function() {
 
-				$('#li'+(anima.i-1)).show( 0, function() {
+			$(this).animate({
+				width: '79.5%'
+			}, anima.speed);
 
-					$(this).animate({
-						width: '10%'
-					}, anima.speed);
+		});
 
-				});
+		$('#li'+(anima.i+1)).show( 0, function() {
 
-				$('#li'+anima.i).show( 0, function() {
+			$(this).animate({
+				width: '10%'
+			}, anima.speed);
 
-					$(this).animate({
-						width: '79%'
-					}, anima.speed);
+		});
 
-				});
-
-				$('#li'+(anima.i+1)).show( 0, function() {
-
-					$(this).animate({
-						width: '10%'
-					}, anima.speed);
-
-				});
-
-
-				anima.i++;
-
-			}
-
-		}, anima.interval)
 	},
-
 
 	back: function() {
 
-		anima.log();
+		if((anima.i == 1) || (anima.state == false)) return false;
 
-		timer = setInterval(function() {
+		anima.i--;
+		
 
-			if(anima.i == 0)
-			{
+		$('#li'+(anima.i+2)).animate({
 
-				clearInterval(timer);
-				anima.i+=2;
+			width: '0%'
+
+		}, anima.speed, function() {
+
+			$(this).hide(0);
+
+		});	
+
+		$('#li'+(anima.i+1)).show( 0, function() {
+
+			$(this).animate({
+				width: '10%'
+			}, anima.speed);
+
+		});
+
+		$('#li'+anima.i).show( 0, function() {
+
+			$(this).animate({
+				width: '79.5%'
+			}, anima.speed);
+
+		});
+
+		$('#li'+(anima.i-1)).show( 0, function() {
+
+			$(this).animate({
+				width: '10%'
+			}, anima.speed);
+
+		});
+
+	},
+
+	auto: function(_interval) {
+
+		if(_interval == undefined) _interval = 3000;
+		if((anima.i == null) || ($(anima.container).css('display') == 'none')) anima.open(1);
+
+		anima.auto_interval = _interval;
+		var length = anima.imagens.length;
+
+		if(anima.i == length)
+		{
+			anima.timer = setInterval(function() {
+
+				if(anima.i == 1) {
+					anima.stop();
+					anima.auto(_interval);
+					return false;
+				} 
+
+				anima.back();
+
+			}, anima.auto_interval);
+
+		} else if(anima.i == 1) {
+
+			anima.timer = setInterval(function() {
+
+				if(anima.i == length) {
+					anima.stop();
+					anima.auto(_interval);
+					return false;
+				}
+
 				anima.front();
 
-			} else {
+			}, anima.auto_interval);
+			
+		} else {
 
-				anima.log();
+			anima.timer = setInterval(function() {
 
-				$('#li'+(anima.i+2)).animate({
+				if(anima.i == length) {
+					anima.stop();
+					anima.auto(_interval);
+					return false;
+				}
 
-					width: '0%'
+				anima.front();
 
-				}, anima.speed, function() {
+			}, anima.auto_interval);
 
-					$(this).hide(0);
+		}
 
-				});	
+	},
 
-				$('#li'+(anima.i+1)).show( 0, function() {
+	stop: function() {
 
-					$(this).animate({
-						width: '10%'
-					}, anima.speed);
+		clearInterval(anima.timer);
 
-				});
-
-				$('#li'+anima.i).show( 0, function() {
-
-					$(this).animate({
-						width: '79%'
-					}, anima.speed);
-
-				});
-
-				$('#li'+(anima.i-1)).show( 0, function() {
-
-					$(this).animate({
-						width: '10%'
-					}, anima.speed);
-
-				});
-
-				anima.i--;
-				
-			}
-
-		}, anima.interval)
 	},
 
 	log: function() {
 
 		console.log("i, "+anima.i);
 
-		console.log("li"+(anima.i-2)+", "+$('#li'+(anima.i-2)).css('width'));
-		console.log("li"+(anima.i-1)+", "+$('#li'+(anima.i-1)).css('width'));
-		console.log("li"+anima.i+", "+$('#li'+anima.i).css('width'));
-		console.log("li"+(anima.i+1)+", "+$('#li'+(anima.i+1)).css('width'));
-		console.log("li"+(anima.i+2)+", "+$('#li'+(anima.i+2)).css('width'));
-		console.log("li"+(anima.i+3)+", "+$('#li'+(anima.i+3)).css('width'));
+		console.log("li"+(anima.i-2)+", display: "+$('#li'+(anima.i-2)).css('display')+", width: "+$('#li'+(anima.i-2)).css('width'));
+		console.log("li"+(anima.i-1)+", display: "+$('#li'+(anima.i-1)).css('display')+", width: "+$('#li'+(anima.i-1)).css('width'));
+		console.log("li"+anima.i+", display: "+$('#li'+anima.i).css('display')+", width: "+$('#li'+anima.i).css('width'));
+		console.log("li"+(anima.i+1)+", display: "+$('#li'+(anima.i+1)).css('display')+", width: "+$('#li'+(anima.i+1)).css('width'));
+		console.log("li"+(anima.i+2)+", display: "+$('#li'+(anima.i+2)).css('display')+", width: "+$('#li'+(anima.i+2)).css('width'));
+		console.log("li"+(anima.i+3)+", display: "+$('#li'+(anima.i+3)).css('display')+", width: "+$('#li'+(anima.i+3)).css('width'));
 
 	}
 
