@@ -165,7 +165,37 @@
 
 				//inicializa galeria
 				gallery.init('#gallery', '.image-viewer', '', '', '', '');
-				anima.init('#image-container', '#image-container .left', '#image-container .right', '#image-container span');
+				anima.init('#image-container');
+
+				/*EVENTOS DA GALERIA*/
+				//seta esquerda
+				$('#image-container .left').click(function() {
+
+					anima.back();
+
+				});
+
+				//seta direita
+				$('#image-container .right').click(function() {
+
+					anima.front();
+
+				});
+
+				//botao fechar
+				$('#image-container span').click(function() {
+
+					anima.close();
+
+					//IE Bug Fix
+					if(navigator.userAgent.search('Trident') > -1) {
+
+						$('.header').fadeOut(0, function() {
+							$(this).fadeIn(200);
+						});
+					}
+
+				});
 
 			});
 

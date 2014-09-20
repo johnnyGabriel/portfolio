@@ -3,9 +3,6 @@ var anima = {
 
 	i: null,
 	container: null,
-	btn_esq: null,
-	btn_dir: null,
-	btn_fechar: null,
 	imagens: [],
 	speed: 'normal',
 	auto_interval : null,
@@ -13,13 +10,10 @@ var anima = {
 	state: false,
 
 
-	init: function(_container, _btn_esq, _btn_dir, _btn_fechar) {
+	init: function(_container) {
 
 		//inicializa as variaveis
 		anima.container = _container;
-		anima.btn_esq = _btn_esq;
-		anima.btn_dir = _btn_dir;
-		anima.btn_fechar = _btn_fechar;
 		anima.imagens = gallery.imagens;
 
 		//cria lista grafica de imagens no container
@@ -36,24 +30,6 @@ var anima = {
 		$('img').click(function(e) {
 			
 			anima.open(parseInt(e.target.id.substring(4)));
-
-		});
-
-		$(anima.btn_esq).click(function() {
-
-			anima.back();
-
-		});
-
-		$(anima.btn_dir).click(function() {
-
-			anima.front();
-
-		});
-
-		$(anima.btn_fechar).click(function() {
-
-			anima.close();
 
 		});
 
