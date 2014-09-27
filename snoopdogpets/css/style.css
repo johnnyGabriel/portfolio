@@ -65,7 +65,7 @@ body #image-container
 	position: fixed;
 	width: 100%;
 	height: 100%;
-	background: rgba(255,255,255, 0.95);
+	background: rgba(228, 223, 223, 0.95);
 }
 
 body #image-container span {
@@ -73,7 +73,7 @@ body #image-container span {
     position: fixed;
     top: 0px;
     right: 0px;
-    font: 60px sans-serif;
+    font: 45px sans-serif;
     color: #FFF;
     text-shadow: 0px 0px 1px rgba(0, 0, 0, 1);
     margin: 20px;
@@ -99,31 +99,37 @@ body #image-container .right {
 
 }
 
-/*body #image-container .image-viewer
+body #image-container ul
 {
-	width: 1014px;
-	height: 100%;
-	margin: 0 auto;
-}*/
-
-body #image-container /*.image-viewer*/ ul
-{
+	width: 101%;
 	height: 100%;
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 }
 
-body #image-container /*.image-viewer*/ ul li
+body #image-container ul li
 {
 	float: left;
 	display: none;
 	width: 0%; 
 	height: 100%; 
 	border-left: 1px solid rgb(190, 190, 190); 
+	box-shadow: rgb(128, 128, 128) 5px 1px 5px 0px;
 }
 
-body #image-container /*.image-viewer*/ img
+body #image-container ul li:first-child
+{
+	border: 0;
+	box-shadow: none;
+}
+
+body #image-container ul li:last-child
+{
+	box-shadow: rgb(128, 128, 128) 3px 1px 5px 0px;
+}
+
+body #image-container img
 {
 	width: 100%;
 }

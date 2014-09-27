@@ -1,14 +1,14 @@
 var gallery = {
 
 	running: null,
-	container: null,
-	imagens: [],
 	speed: 'normal',
-	auto_interval : null,
 	timer: null,
+	timer_interval : null,
 	state: false,
 	busy: false,
-
+	images: [],
+	container: null,
+	dimensions: {center: 79.6, sides: 9.7},
 
 	init: function(_container) {
 
@@ -23,14 +23,14 @@ var gallery = {
 		}
 
 		//inicializa o vetor de imagens
-		this.imagens = thumbs.toArray();
+		this.images = thumbs.toArray();
 
 		//cria ul de imagens no container
-		$(gallery.container).append('<ul><li id="li0" style="border: 0"></li></ul>');
+		$(gallery.container).append('<ul><li id="li0"></li></ul>');
 
 		//preenche a ul
 		var i,
-			x = gallery.imagens;
+			x = gallery.images;
 		for(i=0; i < x.length; i++)
 		{
 			var html = "<li id='li"+(i+1)+"' style='background: url("+gallery.getFullImageURL(x[i].src)+") 0% 0% / cover;'></li>";
@@ -55,11 +55,18 @@ var gallery = {
 
 	},
 
+	setDimensions: function(_center, _sides) {
+
+		this.dimensions.center = _center;
+		this.dimensions.sides = _sides;
+
+	},
+
 	resize: function() {
 
-		var img_width = (79.5 * $(window).width()) /100;
-		var img_height_ratio = (img_width/16) *9.6;
-		var img_margin = ($(window).height() - img_height_ratio) /2;
+		var img_width = parseFloat(((gallery.dimensions.center * $(window).width()) /99).toFixed(2));
+		var img_height_ratio = parseFloat(((img_width/16) *9.6).toFixed(2));
+		var img_margin = parseFloat((($(window).height() - img_height_ratio) /2).toFixed(2));
 
 		$(gallery.container+' ul').animate({
 
@@ -73,7 +80,7 @@ var gallery = {
 	open: function(_id) {
 
 		//checa se _id é válido
-		if((_id > gallery.imagens.length) || (_id < 1) || (_id == undefined)) return false; 
+		if((_id > gallery.images.length) || (_id < 1) || (_id == undefined)) return false; 
 
 		//checa se container esta ativo
 		if(gallery.state == false)
@@ -92,7 +99,7 @@ var gallery = {
 			$('#li'+(gallery.running-1)).show( 0, function() {
 
 				$(this).animate({
-					width: '10%'
+					width: gallery.dimensions.sides+'%'
 				}, gallery.speed);
 
 			});
@@ -100,7 +107,7 @@ var gallery = {
 			$('#li'+gallery.running).show( 0, function() {
 
 				$(this).animate({
-					width: '79.5%'
+					width: gallery.dimensions.center+'%'
 				}, gallery.speed);
 
 			});
@@ -108,7 +115,7 @@ var gallery = {
 			$('#li'+(gallery.running+1)).show( 0, function() {
 
 				$(this).animate({
-					width: '10%'
+					width: gallery.dimensions.sides+'%'
 				}, gallery.speed);
 
 			});
@@ -157,7 +164,7 @@ var gallery = {
 		$('#li'+(gallery.running+1)).show( 0, function() {
 
 			$(this).animate({
-				width: '10%'
+				width: gallery.dimensions.sides+'%'
 			}, gallery.speed);
 
 		});
@@ -165,7 +172,7 @@ var gallery = {
 		$('#li'+(gallery.running)).show( 0, function() {
 
 			$(this).animate({
-				width: '79.5%'
+				width: gallery.dimensions.center+'%'
 			}, gallery.speed);
 
 		});
@@ -173,7 +180,7 @@ var gallery = {
 		$('#li'+(gallery.running-1)).show( 0, function() {
 
 			$(this).animate({
-				width: '10%'
+				width: gallery.dimensions.sides+'%'
 			}, gallery.speed);
 
 		});
@@ -194,7 +201,7 @@ var gallery = {
 
 	forth: function() {
 
-		if((gallery.busy == true) ||(gallery.running == gallery.imagens.length) || (gallery.state == false))return false;
+		if((gallery.busy == true) ||(gallery.running == gallery.images.length) || (gallery.state == false))return false;
 
 		gallery.running++;
 		gallery.busy = true;		
@@ -203,7 +210,6 @@ var gallery = {
 			gallery.busy = false;
 
 		}, (isNaN(gallery.speed)) ? jQuery.speed(gallery.speed).duration : gallery.speed);
-
 
 		$('#li'+(gallery.running-2)).animate({
 
@@ -218,7 +224,7 @@ var gallery = {
 		$('#li'+(gallery.running-1)).show( 0, function() {
 
 			$(this).animate({
-				width: '10%'
+				width: gallery.dimensions.sides+'%'
 			}, gallery.speed);
 
 		});
@@ -226,7 +232,7 @@ var gallery = {
 		$('#li'+gallery.running).show( 0, function() {
 
 			$(this).animate({
-				width: '79.5%'
+				width: gallery.dimensions.center+'%'
 			}, gallery.speed);
 
 		});
@@ -234,10 +240,10 @@ var gallery = {
 		$('#li'+(gallery.running+1)).show( 0, function() {
 
 			$(this).animate({
-				width: '10%'
+				width: gallery.dimensions.sides+'%'
 			}, gallery.speed);
 
-		});
+		});		
 
 	},
 
@@ -266,7 +272,7 @@ var gallery = {
 		$('#li'+(gallery.running+1)).show( 0, function() {
 
 			$(this).animate({
-				width: '10%'
+				width: gallery.dimensions.sides+'%'
 			}, gallery.speed);
 
 		});
@@ -274,7 +280,7 @@ var gallery = {
 		$('#li'+gallery.running).show( 0, function() {
 
 			$(this).animate({
-				width: '79.5%'
+				width: gallery.dimensions.center+'%'
 			}, gallery.speed);
 
 		});
@@ -282,7 +288,7 @@ var gallery = {
 		$('#li'+(gallery.running-1)).show( 0, function() {
 
 			$(this).animate({
-				width: '10%'
+				width: gallery.dimensions.sides+'%'
 			}, gallery.speed);
 
 		});
@@ -294,8 +300,8 @@ var gallery = {
 		if(_interval == undefined) _interval = 3000;
 		if((gallery.running == null) || ($(gallery.container).css('display') == 'none')) gallery.open(1);
 
-		gallery.auto_interval = _interval;
-		var length = gallery.imagens.length;
+		gallery.timer_interval = _interval;
+		var length = gallery.images.length;
 
 		if(gallery.running == length)
 		{
@@ -309,7 +315,7 @@ var gallery = {
 
 				gallery.back();
 
-			}, gallery.auto_interval);
+			}, gallery.timer_interval);
 
 		} else if(gallery.running == 1) {
 
@@ -323,7 +329,7 @@ var gallery = {
 
 				gallery.forth();
 
-			}, gallery.auto_interval);
+			}, gallery.timer_interval);
 			
 		} else {
 
@@ -337,7 +343,7 @@ var gallery = {
 
 				gallery.forth();
 
-			}, gallery.auto_interval);
+			}, gallery.timer_interval);
 
 		}
 
@@ -351,7 +357,7 @@ var gallery = {
 
 	maximize: function() {
 
-		var path = gallery.imagens[gallery.running].src;
+		var path = gallery.images[gallery.running].src;
 		window.open(path, '_blank');
 
 	},
