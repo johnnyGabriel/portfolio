@@ -170,6 +170,12 @@
 				//inicializa galeria
 				gallery.init('#image-container');
 
+				//seta velocidade da transição
+				gallery.speed = 300;
+
+				//seta aspect ratio das imagens
+				gallery.setRatio(16, 9.6);
+
 				//seta esquerda				
 				$('#image-container .left').click(function() {
 

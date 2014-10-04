@@ -9,6 +9,8 @@ var gallery = {
 	images: [],
 	container: null,
 	dimensions: {center: 79.6, sides: 9.7},
+	ratio: {width: 16, height: 9},
+
 
 	init: function(_container) {
 
@@ -62,10 +64,18 @@ var gallery = {
 
 	},
 
+	setRatio: function(_width, _height) {
+
+		this.ratio.width = _width;
+		this.ratio.height = _height;
+		this.resize();
+
+	},
+
 	resize: function() {
 
 		var img_width = parseFloat(((gallery.dimensions.center * $(window).width()) /99).toFixed(2));
-		var img_height_ratio = parseFloat(((img_width/16) *9.6).toFixed(2));
+		var img_height_ratio = parseFloat(((img_width/this.ratio.width) * this.ratio.height).toFixed(2));
 		var img_margin = parseFloat((($(window).height() - img_height_ratio) /2).toFixed(2));
 
 		$(gallery.container+' ul').animate({
