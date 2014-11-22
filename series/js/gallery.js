@@ -1,19 +1,19 @@
 var gallery = {
 
-	running: null, //flag (id da imagem mostrada atual)
-	speed: 'normal', //velocidade de transições
-	timer: null, //timer do método auto (troca automatica de imagens)
-	timer_interval : null, //intervalo de tempo do timer
-	state: false, //flag (galeria aberta ou nao)
-	busy: false, //flag (imagens em transição ou não)
-	images: [], //array com lista de elementos li com imagens
-	container: null, //container da galeria
-	thumbs: null, //array com lista de imagens de thumb
-	dimensions: {center: 79.6, sides: 9.7}, //dimensões das imagens na tela
-	ratio: {width: 16, height: 9}, //aspect ratio das imagens
+	running: null,
+	speed: 'normal',
+	timer: null,
+	timer_interval : null,
+	state: false,
+	busy: false,
+	images: [],
+	container: null,
+	thumbs: null,
+	dimensions: {center: 79.6, sides: 9.7},
+	ratio: {width: 16, height: 9},
 
-	//inicializa a galeria
-	init: function(_container, _thumbs) {
+
+	init: function(_container, _thumbs, _load) {
 
 		//inicializa as variaveis
 		gallery.container = _container;
@@ -26,10 +26,20 @@ var gallery = {
 			$(gallery.thumbs[i]).attr('id', 'img-'+(i+1));
 		}
 
+		/*
+		//inicializa o vetor de imagens
+		for() {
+
+
+
+		}
+		this.images = thumbs.toArray();
+		*/
+
 		//cria ul de imagens no container
 		$(gallery.container).append('<ul><li id="li0"></li></ul>');
 
-		//cria as li's com imagens
+		//cria as li com imagens
 		var i,
 			x = gallery.thumbs,
 			html = '';
@@ -39,23 +49,18 @@ var gallery = {
 			$(gallery.container+' ul').append(html);
 		}	
 
-		//preenche o array images com as li's
 		gallery.images = $(gallery.container+' ul').find('li');
 
 		//organiza os elementos de acordo com a resolução
 		gallery.resize();
 
-		/*
-		EVENTOS
-		*/
-		//evento de click em thumbs
+		//eventos
 		$('#gallery img').click(function(e) {
 			
 			gallery.open(parseInt(e.target.id.substring(4)));
 
 		});
 
-		//evento de resize da tela
 		$(window).resize(function() {
 
 			gallery.resize();
@@ -64,7 +69,6 @@ var gallery = {
 
 	},
 
-	//seta as dimensões das imagens na tela
 	setDimensions: function(_center, _sides) {
 
 		this.dimensions.center = _center;
@@ -72,7 +76,6 @@ var gallery = {
 
 	},
 
-	//seta o aspect ratio das imagens
 	setRatio: function(_width, _height) {
 
 		this.ratio.width = _width;
@@ -81,7 +84,6 @@ var gallery = {
 
 	},
 
-	//realiza o resize dos elementos
 	resize: function() {
 
 		var img_width = parseFloat(((gallery.dimensions.center * $(window).width()) /99).toFixed(2));
@@ -97,106 +99,47 @@ var gallery = {
 
 	},
 
-	//carrega as imagens (2 < atual > 2)
 	load: function(_id) {
 
 		var elem = gallery.images,
 			path = '',
-			//array com id de imagens a carregar
 			order = [_id, _id-1, _id+1, _id-2, _id+2],
-			//indice de controle do array order
 			i = 0;
-			//variavel de controle de carregamento
-			if(window.statusLoad == undefined) statusLoad = [];
 
 		function rec(_id) {
-
-			var thumb = gallery.thumbs[order[i]-1];
 
 			if(i == order.length) {
 
 				return false;
 
-			} else if((statusLoad[order[i]] == true) || (thumb == undefined)) {
-
-				rec(++i);
-				return false;
-
 			}
+				
+			var thumb = gallery.thumbs[order[i]-1];
 
-			var e = elem[order[i]],				
+			if((thumb == undefined) || ($(elem[order[i]]).find('div').css('display') == 'none')) {
+
+				i++;
+				rec(i);
+
+			} else {
+
 				path = gallery.getFullImageURL(thumb.src);
-				statusLoad[order[i]] = true;
+				$.get(path, function() {
 
-			$.get(path)
-
-				.done(function() {
-
-					$(e).css("background", "url("+ path +") 0% 0% / cover");
-
-					setTimeout(function() {
-
-						$(e).find('div').fadeOut('normal');
-						rec(++i);
-
-					}, 200);
-
-				})
-
-				.fail(function() {
-
-					statusLoad[order[i]] = false;
-					rec(++i);
+					$(elem[order[i]]).css("background", "url("+ path +") 0% 0% / cover");
+					$(elem[order[i]]).find('div').fadeOut('normal');
+					i++;
+					rec(i);
 
 				});
+
+			}
 		}
 
 		rec(_id);
 
 	},
 
-	//pula para determinada imagem (pelo id), diferente do open, este vai percorrendo as imagens
-	jump: function(_id) {
-
-		var index=1,
-			times = Math.abs(gallery.running - _id),
-			storeSpeed = gallery.speed,
-			tempSpeed = 200,
-			interval = 0,
-			command = "";
-
-		(_id > gallery.running) ? command = gallery.forth : command = gallery.back;
-
-		gallery.speed = tempSpeed;
-
-		function rec(index) {
-
-			if(index <= times) {
-
-				setTimeout(function() {
-
-					command();
-					rec(++index);
-
-				}, interval);
-
-				interval = gallery.speed;
-				
-
-			} else {
-
-				gallery.speed = storeSpeed;
-				return false;
-
-			}
-
-		}
-
-		rec(index);
-
-	},
-
-	//abre determinada imagem (pelo id)
 	open: function(_id) {
 
 		//checa se _id é válido
@@ -243,13 +186,6 @@ var gallery = {
 
 			});
 
-			return false;
-
-		}
-
-		if((_id >= gallery.running-2) && (_id <= gallery.running+2)) {
-			
-			gallery.jump(_id);
 			return false;
 
 		}
@@ -317,7 +253,6 @@ var gallery = {
 
 	},
 
-	//fecha a galeria
 	close: function() {
 
 		//checa se container esta ativo
@@ -330,7 +265,6 @@ var gallery = {
 
 	},
 
-	//pula para a imagem posterior
 	forth: function() {
 
 		if((gallery.busy == true) ||(gallery.running == gallery.images.length-1) || (gallery.state == false))return false;
@@ -379,10 +313,10 @@ var gallery = {
 			}, gallery.speed);
 
 		});	
+		
 
 	},
 
-	//pula para a imagem anterior
 	back: function() {
 
 		if((gallery.busy == true) ||(gallery.running == 1) || (gallery.state == false)) return false;
@@ -432,9 +366,9 @@ var gallery = {
 
 		});
 
+
 	},
 
-	//pula as imagens automaticamente
 	auto: function(_interval) {
 
 		if(_interval == undefined) _interval = 3000;
@@ -489,14 +423,12 @@ var gallery = {
 
 	},
 
-	//para de pular as imagens automaticamente
 	stop: function() {
 
 		clearInterval(gallery.timer);
 
 	},
 
-	//abre a imagem completa em nova aba
 	maximize: function() {
 
 		var path = gallery.images[gallery.running].src;
@@ -504,14 +436,12 @@ var gallery = {
 
 	},
 
-	//obtem o caminho da imagem completa pela sua thumb
 	getFullImageURL:function(_url) {
 
 		return _url.replace('thumbs/', '');
 
 	},
 
-	//log de elementos em tela
 	log: function() {
 
 		var x = gallery.running;
