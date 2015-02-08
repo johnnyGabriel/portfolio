@@ -1,8 +1,0 @@
-- suportar diversas resoluções na galeria;
-- unir anima.js e gallery.js;
-- corrigir bugs e compatibilidade de navegadores;
-- portar para PHP e MySQL;
-- criar conteúdo para series e a2y;
-
-
-Prazo: 26/09
