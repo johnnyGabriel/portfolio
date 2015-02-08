@@ -4,7 +4,7 @@
 
 	$bd = new mySQL;
 	$bd->selecionar_bd('u321650215_works');
-	$res = $bd->send_Query("SELECT * FROM works WHERE titulo = 'SnoopDogPets'");
+	$res = $bd->send_Query("SELECT * FROM works WHERE titulo = 'Séries'");
 	if($res == -1) exit();
 
 ?>
@@ -64,7 +64,7 @@
 
 				/*
 
-				EVENTOS DO MENU
+				Menu Fixed
 
 				*/
 
@@ -100,6 +100,13 @@
 					}, 500);
 
 				});
+
+
+				/*
+
+				Galeria
+				
+				*/
 
 				//inicialização da galeria
 				var imgs = [],
@@ -149,49 +156,15 @@
 
         		});
 
-				// /*
+				/*	//IE Bug Fix
+					if(navigator.userAgent.search('Trident') > -1) {
 
-				// EVENTOS DA GALERIA
+						$('.header').fadeOut(0, function() {
+							$(this).fadeIn(200);
+						});
+					}
 
-				// */
-
-				// //inicializa galeria
-				// gallery.init('#image-container', '#gallery');
-
-				// //seta velocidade da transição
-				// gallery.speed = 300
-
-				// //seta aspect ratio das imagens
-				// gallery.setRatio(16, 9.61);
-
-				// //seta esquerda				
-				// $('#image-container .left').click(function() {
-
-				// 	gallery.back();
-
-				// });
-
-				// //seta direita
-				// $('#image-container .right').click(function() {
-
-				// 	gallery.forth();
-
-				// });
-
-				// //botao fechar
-				// $('#image-container span').click(function() {
-
-				// 	gallery.close();
-
-				// 	//IE Bug Fix
-				// 	if(navigator.userAgent.search('Trident') > -1) {
-
-				// 		$('.header').fadeOut(0, function() {
-				// 			$(this).fadeIn(200);
-				// 		});
-				// 	}
-
-				// });
+				});*/
 
 			});
 
