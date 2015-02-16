@@ -1,25 +1,14 @@
-<?php
-
-	include "../php/mySQL.class.php";
-
-	$bd = new mySQL;
-	$bd->selecionar_bd('u321650215_works');
-	$res = $bd->send_Query("SELECT * FROM works WHERE titulo = 'Séries'");
-	if($res == -1) exit();
-
-?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title><? echo $res->titulo ?></title>
+	<title>SnoopDogPets</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
 	<link rel="icon" href="../images/favicon.ico" type="image/x-icon" />
-	<link rel="stylesheet" href="../css/projetos.css" type="text/css" />
-	<link rel="stylesheet" href="../Gallery.2.0/css/gallery.min.css"  type="text/css" />
-	<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300italic,700,300' type='text/css' />
+	<link href="../css/projetos.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="../Gallery.2.0/css/gallery.min.css">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300italic,700,300' rel='stylesheet' type='text/css' />
 </head>
 
 	<body>
@@ -42,12 +31,73 @@
 
 				<div class="text">
 					
-					<? echo $res->texto ?>
+					<h1 id="nav-sobre">SnoopDogPets <a href="http://snoopdogpets.hol.es">http://snoopdogpets.hol.es</a></h1>
+					<hr />
+					<p> O site foi criado como trabalho acadêmico onde deveria ser colocada em prática os fundamentos de Modelagem de Sistemas. O tema utilizado no trabalho foi uma Petshop, portanto foi desenvolvido um sistema de gerenciamento básico voltado para o uso em uma Petshop. </p>
+
+					<h2 id="nav-linguagens">Linguagens</h2>
+					<hr />
+					<p> Na construção do site foram usadas as seguintes linguagens: </p>
+
+					<h3>HTML</h3>
+					<p> A estrutura da página. </p>
+
+					<h3>CSS</h3>
+					<p> Usado para estilizar os elementos da página. </p>
+
+					<h3>JavaScript</h3>
+					<p> Usado para obter informações das páginas e realizar rotinas como busca de produto, cálculo de compra, etc. </p>
+
+					<h3>Ajax</h3>
+					<p> Usado na busca de produtos para obter informações dos produtos sem a necessidade de recarregamento da página. </p>
+
+					<h3>jQuery</h3>
+					<p> Usado como parte do Javascript para tornar o tempo de desenvolvimento menor e como efeitos de algumas animações de elementos. </p>
+
+					<h3>Twitter Bootstrap</h3>
+					<p> Usado para tornar o estilo dos elementos padrão e de rápido desenvolvimento. </p>
+
+					<h3>PHP</h3>
+					<p> Usado para gravar e pegar informações de produtos, clientes, fornecedores, etc no MySQL. </p>
+
+					<h3>MySQL</h3>
+					<p> Usado como banco de dados onde são gravados informações de clientes, produtos, etc. </p>
+
+					<h3>Google Fonts</h3>
+					<p> Usado para importar a fonte Lato. </p>
+
+					<h2 id="nav-ferramentas">Ferramentas</h2>
+					<hr />
+					<p> No desenvolvimento foram utilizadas as seguintes ferramentas e softwares: </p>
+
+					<h3>Sublime Text</h3>
+					<p>criação e edição de código.</p>
+
+					<h3>FileZilla</h3>
+					<p>envio dos arquivos para o servidor através de FTP.</p>
+
+					<h3>Adobe Photoshop</h3>
+					<p>edição de imagens.</p>
+
+					<h3>Google Chrome, Mozilla Firefox e Internet Explorer</h3>
+					<p>testes de layout, navegação, etc.</p>
 
 					<h2 id="nav-galeria">Galeria</h2>
 					<hr>
 					<div id="gallery-thumbs">
-						<? echo $res->galeria ?>
+						<img src="img/thumbs/1.jpg" alt="" />
+						<img src="img/thumbs/2.jpg" alt="" />
+						<img src="img/thumbs/3.jpg" alt="" />
+						<img src="img/thumbs/4.jpg" alt="" />
+						<img src="img/thumbs/5.jpg" alt="" />
+						<img src="img/thumbs/6.jpg" alt="" />
+						<img src="img/thumbs/7.jpg" alt="" />
+						<img src="img/thumbs/8.jpg" alt="" />
+						<img src="img/thumbs/9.jpg" alt="" />
+						<img src="img/thumbs/10.jpg" alt="" />
+						<img src="img/thumbs/11.jpg" alt="" />
+						<img src="img/thumbs/12.jpg" alt="" />
+						<img src="img/thumbs/13.jpg" alt="" />
 					</div>
 
 				</div>
@@ -64,7 +114,7 @@
 
 				/*
 
-				Menu Fixed
+				EVENTOS DO MENU
 
 				*/
 
@@ -91,7 +141,7 @@
 
 
 				//evento de click menu
-				$('a').on("click", function(e) {
+				$('.nav ').find('a').on("click", function(e) {
 
 					e.preventDefault();
 
@@ -101,11 +151,10 @@
 
 				});
 
-
 				/*
 
-				Galeria
-				
+				EVENTOS DA GALERIA
+
 				*/
 
 				//inicialização da galeria
@@ -155,16 +204,6 @@
         			}, 1000);
 
         		});
-
-				/*	//IE Bug Fix
-					if(navigator.userAgent.search('Trident') > -1) {
-
-						$('.header').fadeOut(0, function() {
-							$(this).fadeIn(200);
-						});
-					}
-
-				});*/
 
 			});
 
