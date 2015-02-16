@@ -58,6 +58,9 @@ hr
 	border-bottom: 1px solid rgb(207, 202, 202);
     border-top: 0;       
 }
+body #nav-sobre > a {
+	font-size: 19px;
+}
 body .container
 {
 	width: 970px;
