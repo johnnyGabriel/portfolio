@@ -153,6 +153,10 @@
         			'maxWidth': 1280
         		});
 
+        		setTimeout(function() {
+        			gallery.load(0);
+        		}, 10000);
+
         		//evento de click das thumbs
         		$('#gallery-thumbs img').on('click', function(e) {
 
