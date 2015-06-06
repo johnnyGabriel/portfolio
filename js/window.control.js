@@ -29,4 +29,4 @@ $(document).ready(function() {
 			$('.content div').width((screen_width-15)+'px');
 		}
 	}
-}) 
+});

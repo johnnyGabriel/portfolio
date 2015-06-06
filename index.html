@@ -6,8 +6,97 @@
 		<meta name=viewport content="width=device-width, initial-scale=1">
 		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
-		<link rel="stylesheet" href="css/home.css">
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300italic,700,300' rel='stylesheet' type='text/css'>
+		<style type="text/css">
+			body
+			{
+				font-family: Open Sans Condensed;
+				font-weight: lighter;
+				background-color: rgba(228, 223, 223, 1);
+				padding: 0;
+				margin: 0;
+			}
+
+			body .container
+			{
+				width: 100%;	
+			}
+
+			h1
+			{
+				font-size: 40px;
+				font-weight: normal;
+				color: rgb(70, 70, 70);
+				padding: 0;
+				margin: 0;
+			}
+
+			h6
+			{
+				font-size: 13px;
+				font-weight: normal;
+				color: rgb(153, 153, 153);
+				padding: 0;
+				margin: 0;
+			}
+
+			body .header
+			{
+				display: inline-table;
+				width: 100%;
+				height: 80px;
+				text-align: center;
+				padding-bottom: 7px;
+				background-color: rgb(255, 255, 255);
+			}
+
+			body .header hr
+			{
+				width: 15%;
+			}
+
+			body .content
+			{
+				display: inline-block;
+			}
+
+			.content div
+			{
+				float: left;
+				cursor: pointer;
+				width: 492px;
+				height: 400px;
+				margin: 10px 0px 0px 8px;
+				padding-top: 5px;
+				background-color: white;
+				box-shadow: 0px 1px 2px 0px rgb(126, 126, 126);
+			}
+
+			.content ul
+			{
+				list-style-type: none;
+				width: 100%;
+				height: 100%;
+				padding: 0;
+				margin: 0;
+			}
+
+			.content ul li
+			{
+				font-size: 50px;
+				font-style: italic;
+				color: rgb(70, 70, 70);
+			}
+
+			.content ul li span
+			{
+				margin-left: 18px;
+			}
+
+			.cover
+			{
+				height: 80%;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -66,9 +155,11 @@
 
 	</div>
 
-	<script src="js/jquery.min.js"></script>	
-	<script src="js/window.control.js"></script>	
-	<script async src="js/analytics.js"></script>
+	<link rel="stylesheet" href="css/home.min.css" />
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300italic,700,300' rel='stylesheet' type='text/css'>
+	<script src="js/jquery.1.11.1.min.js"></script>	
+	<script async src="js/window.control.min.js"></script>	
+	<script async src="js/analytics.min.js"></script>
 	
 	</body>
 </html>
